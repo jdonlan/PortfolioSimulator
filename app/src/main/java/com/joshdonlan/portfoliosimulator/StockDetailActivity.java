@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.joshdonlan.portfoliosimulator.fragments.PortfolioFragment;
 import com.joshdonlan.portfoliosimulator.fragments.StockFragment;
 import com.joshdonlan.portfoliosimulator.objetcs.Stock;
 
@@ -23,6 +24,7 @@ public class StockDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_detail);
 
+
         if(savedInstanceState == null){
             Intent loadingIntent = getIntent();
             Bundle extras = loadingIntent.getExtras();
@@ -38,6 +40,14 @@ public class StockDetailActivity extends Activity {
         }
         if(mStock == null){
             Log.e(TAG,"Attempted to load stock detail with no stock provided.");
+            setResult(RESULT_CANCELED);
+            finish();
+        }
+
+        if(findViewById(R.id.f_stockdetail).getTag().toString().compareTo(getResources().getString(R.string.stock_detail_landscape_tag)) == 0){
+            Intent returnDetail = new Intent();
+            returnDetail.putExtra(StockFragment.STOCK,mStock);
+            setResult(RESULT_OK,returnDetail);
             finish();
         }
     }

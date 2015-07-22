@@ -6,6 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/f_portfoliolist"></FrameLayout>
+        android:id="@+id/f_portfoliolist"
+        android:tag="@string/portfolio_portrait_tag"></FrameLayout>
 
 </LinearLayout>

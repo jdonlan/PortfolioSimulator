@@ -124,12 +124,6 @@ public class Stock implements Serializable{
     }
 
     private <T> String roundStringOrDouble(T _input){
-        /*
-        String stringValue = _input;
-        value*=100;
-        value = (double) Math.round(value);
-        value/=100;
-        */
         Double input;
         if(_input instanceof String){
             String inputString = (String) _input;

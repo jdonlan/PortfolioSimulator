@@ -71,11 +71,7 @@ public class PortfolioFragment extends Fragment {
     private AdapterView.OnItemClickListener portfolioListListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> _parent, View _view, int _position, long _id) {
-            Intent loadDetails = new Intent(mContainingActivity, StockDetailActivity.class);
-            Bundle extras = new Bundle();
-            extras.putSerializable(StockDetailActivity.STOCK, (Stock) _parent.getItemAtPosition(_position));
-            loadDetails.putExtras(extras);
-            startActivity(loadDetails);
+            ((StockDetailListener) mContainingActivity).loadStockDetail((Stock) _parent.getItemAtPosition(_position));
         }
     };
 
