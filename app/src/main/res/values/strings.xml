@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PortfolioSimulator</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_portfolio">PortfolioActivity</string>
+
+    <string-array name="portfolio_temp">
+        <item>GOOG</item>
+        <item>YHOO</item>
+        <item>AAPL</item>
+        <item>IBM</item>
+        <item>MSFT</item>
+        <item>ORCL</item>
+    </string-array>
+
+</resources>
