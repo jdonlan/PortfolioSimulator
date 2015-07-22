@@ -61,8 +61,8 @@ public class Stock implements Serializable{
         this.mSymbol = mSymbol;
     }
 
-    public Double getPrice() {
-        return mPrice == null ? 0 : mPrice;
+    public String getPrice() {
+        return mPrice == null ? "0" : roundStringOrDouble(mPrice);
     }
 
     public void setPrice(Double mPrice) {
@@ -77,32 +77,32 @@ public class Stock implements Serializable{
         this.mDate = mDate;
     }
 
-    public Double getHigh() {
-        return mHigh == null ? 0 : mHigh;
+    public String getHigh() {
+        return mHigh == null ? "0" : roundStringOrDouble(mHigh);
     }
 
     public void setHigh(Double mHigh) {
         this.mHigh = mHigh;
     }
 
-    public Double getLow() {
-        return mLow == null ? 0 : mLow;
+    public String getLow() {
+        return mLow == null ? "0" : roundStringOrDouble(mLow);
     }
 
     public void setLow(Double mLow) {
         this.mLow = mLow;
     }
 
-    public Double getChange() {
-        return mChange == null ? 0 : mChange;
+    public String getChange() {
+        return mChange == null ? "0" : roundStringOrDouble(mChange);
     }
 
     public void setChange(Double mChange) {
         this.mChange = mChange;
     }
 
-    public Double getOpen() {
-        return mOpen == null ? 0 : mOpen;
+    public String getOpen() {
+        return mOpen == null ? "0" : roundStringOrDouble(mOpen);
     }
 
     public void setOpen(Double mOpen) {
@@ -117,11 +117,26 @@ public class Stock implements Serializable{
         this.mVolume = mVolume;
     }
 
-    public String getPercent() {
-        return mPercent == null ? "0%" : mPercent;
-    }
+    public String getPercent() { return mPercent == null ? "0%" : roundStringOrDouble(mPercent)+"%"; }
 
     public void setPercent(String mPercent) {
         this.mPercent = mPercent;
+    }
+
+    private <T> String roundStringOrDouble(T _input){
+        /*
+        String stringValue = _input;
+        value*=100;
+        value = (double) Math.round(value);
+        value/=100;
+        */
+        Double input;
+        if(_input instanceof String){
+            String inputString = (String) _input;
+            input = Double.valueOf(inputString.substring(0,inputString.length()-1));
+        } else {
+            input = (Double) _input;
+        }
+        return String.format("%.2f", input);
     }
 }

@@ -1,5 +1,6 @@
 package com.joshdonlan.portfoliosimulator.objetcs;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import com.joshdonlan.portfoliosimulator.R;
  */
 public class StockAdapter extends BaseAdapter {
 
+    private Context mContext;
     private Stock[] mStocks;
 
-    public StockAdapter(Stock[] _stocks){
+    public StockAdapter(Context _context, Stock[] _stocks){
+        mContext = _context;
         mStocks = _stocks;
     }
 
@@ -40,7 +43,7 @@ public class StockAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if(_convertView == null){
-            _convertView = LayoutInflater.from(_parent.getContext()).inflate(R.layout.item_stock,_parent,false);
+            _convertView = LayoutInflater.from(mContext).inflate(R.layout.item_stock,_parent,false);
             holder = new ViewHolder(_convertView);
             _convertView.setTag(holder);
         } else {
@@ -49,7 +52,7 @@ public class StockAdapter extends BaseAdapter {
 
         holder.getSymbol().setText(getItem(_position).getSymbol());
         holder.getPrice().setText(getItem(_position).getPrice().toString());
-        holder.getChange().setText(getItem(_position).getChange().toString());
+        holder.getChange().setText(getItem(_position).getPercent());
 
         return _convertView;
     }

@@ -2,13 +2,16 @@ package com.joshdonlan.portfoliosimulator.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.joshdonlan.portfoliosimulator.R;
+import com.joshdonlan.portfoliosimulator.StockDetailActivity;
 import com.joshdonlan.portfoliosimulator.objetcs.Stock;
 import com.joshdonlan.portfoliosimulator.objetcs.StockAdapter;
 import com.joshdonlan.portfoliosimulator.objetcs.StockDetailListener;
@@ -33,10 +36,10 @@ public class PortfolioFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if(activity instanceof StockDetailListener){
-            mContainingActivity = activity;
+    public void onAttach(Activity _activity) {
+        super.onAttach(_activity);
+        if(_activity instanceof StockDetailListener){
+            mContainingActivity = _activity;
         } else {
             throw new IllegalArgumentException("Containing activity must implement StockDetailListener");
         }
@@ -44,7 +47,7 @@ public class PortfolioFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_portfolio,container);
+        View view = inflater.inflate(R.layout.fragment_portfolio,container,false);
         ListView stocklist = (ListView) view.findViewById(R.id.lv_stocks);
 
         Bundle args = getArguments();
@@ -58,10 +61,22 @@ public class PortfolioFragment extends Fragment {
             stocksRead++;
         }
 
-        StockAdapter stockAdapter = new StockAdapter(stocks);
+        StockAdapter stockAdapter = new StockAdapter(mContainingActivity,stocks);
         stocklist.setAdapter(stockAdapter);
+        stocklist.setOnItemClickListener(portfolioListListener);
 
         return view;
     }
+
+    private AdapterView.OnItemClickListener portfolioListListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> _parent, View _view, int _position, long _id) {
+            Intent loadDetails = new Intent(mContainingActivity, StockDetailActivity.class);
+            Bundle extras = new Bundle();
+            extras.putSerializable(StockDetailActivity.STOCK, (Stock) _parent.getItemAtPosition(_position));
+            loadDetails.putExtras(extras);
+            startActivity(loadDetails);
+        }
+    };
 
 }

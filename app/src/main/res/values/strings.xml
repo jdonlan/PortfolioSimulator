@@ -13,5 +13,6 @@
         <item>MSFT</item>
         <item>ORCL</item>
     </string-array>
+    <string name="title_activity_stock_detail">StockDetailActivity</string>
 
 </resources>

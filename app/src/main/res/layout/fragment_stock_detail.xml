@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_symbol"
+            android:text="DEMO"
+            android:textSize="28sp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            style="@style/stock_grid_data"
+            android:id="@+id/tv_date"
+            android:text="1/1/2000 9:00am"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_price"
+            android:text="99.99"
+            android:textSize="32sp"
+            android:textColor="#000"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_change"
+            android:text="3.24"
+            android:textSize="28sp"
+            android:textColor="#0f3"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_percent"
+            android:text="(3.12%)"
+            android:textColor="#0f3"
+            android:textSize="28dp"/>
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="4"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_columnWeight=".15"
+            style="@style/stock_grid_data"
+            android:text="Open"/>
+
+        <TextView
+            android:layout_columnWeight=".35"
+            style="@style/stock_grid_data"
+            android:id="@+id/tv_open"
+            android:text="96.25"/>
+
+        <TextView
+            android:layout_columnWeight=".15"
+            style="@style/stock_grid_data"
+            android:text="High"/>
+
+        <TextView
+            style="@style/stock_grid_data"
+            android:id="@+id/tv_high"
+            android:text="102.25"/>
+
+        <TextView
+            style="@style/stock_grid_data"
+            android:text="Volume"/>
+
+        <TextView
+            android:layout_columnWeight=".35"
+            style="@style/stock_grid_data"
+            android:id="@+id/tv_volume"
+            android:text="3028"/>
+
+        <TextView
+            style="@style/stock_grid_data"
+            android:text="Low"/>
+
+        <TextView
+            style="@style/stock_grid_data"
+            android:id="@+id/tv_low"
+            android:text="96.75"/>
+
+
+    </GridLayout>
+
+
+</LinearLayout>
