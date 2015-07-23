@@ -2,10 +2,13 @@ package com.joshdonlan.portfoliosimulator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.joshdonlan.portfoliosimulator.fragments.SettingsFragment;
 import com.joshdonlan.portfoliosimulator.objetcs.Stock;
 import com.joshdonlan.portfoliosimulator.objetcs.StockTask;
 import com.joshdonlan.utils.AndroidConnectivity;
@@ -38,15 +42,18 @@ public class MainActivity extends ActionBarActivity implements StockTask.StockLi
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if(AndroidConnectivity.getDataStatus(this) >= AndroidConnectivity.ONLINE) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean(getResources().getString(R.string.PREF_DOWNLOADONSTART),true)) {
+            if (AndroidConnectivity.getDataStatus(this) >= AndroidConnectivity.ONLINE) {
 
-            //TODO: Replace with actual stock list
-            String[] stocks = getResources().getStringArray(R.array.portfolio_temp);
+                Log.i(TAG, "Loading updated stock data for portfolio.");
+                //TODO: Replace with actual stock list
+                String[] stocks = getResources().getStringArray(R.array.portfolio_temp);
 
-            StockTask stockTask = new StockTask(this);
-            stockTask.execute(stocks);
+                StockTask stockTask = new StockTask(this);
+                stockTask.execute(stocks);
+            }
         }
-
         Button goPortfolio = (Button) findViewById(R.id.b_goportfolio);
         goPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +88,8 @@ public class MainActivity extends ActionBarActivity implements StockTask.StockLi
 
         switch (id){
             case R.id.action_settings:
+                Intent loadSettings = new Intent(this, SettingsActivity.class);
+                startActivity(loadSettings);
                 break;
             case R.id.action_search:
                 mSearch = item;

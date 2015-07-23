@@ -27,6 +27,10 @@
             android:name=".StockDetailActivity"
             android:label="@string/title_activity_stock_detail" >
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

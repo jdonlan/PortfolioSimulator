@@ -51,7 +51,6 @@ public class StockTask extends AsyncTask<String,Void,Stock[]> {
                 String yql = "select * from csv where url='http://download.finance.yahoo.com/d/quotes.csv?s=" + symbol + "&f=sl1d1t1c1ohgvp2&e=.csv' and columns='symbol,price,date,time,change,open,high,low,volume,chgpct'";
                 String qs = URLEncoder.encode(yql, "UTF-8");
                 URL queryURL = new URL(baseURL + "?q=" + qs + "&format=json");
-                Log.d(TAG,"Query : " + queryURL.toString());
                 HttpURLConnection conn = (HttpURLConnection) queryURL.openConnection();
                 String result = IOUtils.toString(conn.getInputStream());
                 JSONObject jsonResult = new JSONObject(result);

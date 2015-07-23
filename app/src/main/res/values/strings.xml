@@ -3,15 +3,14 @@
 
     <string name="title_activity_portfolio">Portfolio</string>
     <string name="title_activity_stock_detail">Stock Details</string>
+    <string name="title_activity_settings">Settings</string>
 
-    <string name="portfolio_landscape_tag">portfolio_landscape</string>
-    <string name="portfolio_portrait_tag">portfolio_portrait</string>
-    <string name="stock_detail_landscape_tag">portfolio_landscape</string>
-    <string name="stock_detail_portrait_tag">portfolio_portrait</string>
-
+    <!-- Menu -->
     <string name="action_settings">Settings</string>
 
+    <!-- Dialogs and Toasts -->
     <string name="toast_symbol_not_found">Symbol Not Found.</string>
+    <string name="dialogue_clear_data">Are you sure you want to clear all stored stock data?</string>
 
     <string-array name="portfolio_temp">
         <item>GOOG</item>
@@ -21,5 +20,15 @@
         <item>MSFT</item>
         <item>ORCL</item>
     </string-array>
+
+
+    <string name="YES">Yes</string>
+    <string name="NO">No</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="clearDataMessage">Clearing Application Data…</string>
+    <string name="PREF_DNS_Title">Refresh Data On Launch</string>
+    <string name="PREF_DNS_Summary">Download new stock data whenever application is launched.</string>
+    <string name="PREF_CD_Title">Clear Data</string>
+    <string name="PREF_CD_Summary">Delete all stored stock data.</string>
 
 </resources>

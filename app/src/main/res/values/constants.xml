@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT TRANSLATE -->
+<resources>
+    <string name="PREF_DOWNLOADONSTART">PREF_DOWNLOADONSTART</string>
+    <string name="PREF_CLEARDATA">PREF_CLEARDATA</string>
+
+    <string name="portfolio_landscape_tag">portfolio_landscape</string>
+    <string name="portfolio_portrait_tag">portfolio_portrait</string>
+    <string name="stock_detail_landscape_tag">portfolio_landscape</string>
+    <string name="stock_detail_portrait_tag">portfolio_portrait</string>
+</resources>

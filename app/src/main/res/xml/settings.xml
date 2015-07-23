@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Application Data">
+
+        <CheckBoxPreference
+            android:key="@string/PREF_DOWNLOADONSTART"
+            android:title="@string/PREF_DNS_Title"
+            android:summary="@string/PREF_DNS_Summary"
+            android:defaultValue="true"/>
+
+        <Preference
+            android:key="@string/PREF_CLEARDATA"
+            android:title="@string/PREF_CD_Title"
+            android:summary="@string/PREF_CD_Summary"></Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
