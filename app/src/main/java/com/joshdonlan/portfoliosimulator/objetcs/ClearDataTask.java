@@ -3,6 +3,7 @@ package com.joshdonlan.portfoliosimulator.objetcs;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.joshdonlan.portfoliosimulator.R;
 
@@ -14,9 +15,12 @@ import java.io.FilenameFilter;
  */
 public class ClearDataTask extends AsyncTask<Void, Integer, Void>{
 
+    private static final String TAG = "ClearDataTask";
     private Context mContext;
     private ProgressDialog mProgressDialog;
-    private File[] mFiles;
+    private Stock[] mStocks;
+    private StockDataSource mStockDataSource;
+
 
     public ClearDataTask(Context _context){
         mContext = _context;
@@ -26,19 +30,14 @@ public class ClearDataTask extends AsyncTask<Void, Integer, Void>{
     protected void onPreExecute() {
         super.onPreExecute();
 
-        File internal = mContext.getFilesDir();
-        mFiles = internal.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String filename) {
-                if (filename.endsWith(".dat")) return true;
-                return false;
-            }
-        });
+        mStockDataSource = new StockDataSource(mContext);
+        mStockDataSource.open();;
+        mStocks = mStockDataSource.readAllStocks();
 
         mProgressDialog = new ProgressDialog(mContext);
         mProgressDialog.setMessage(mContext.getResources().getString(R.string.clearDataMessage));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setMax(mFiles.length);
+        mProgressDialog.setMax(mStocks.length);
         mProgressDialog.show();
 
     }
@@ -52,9 +51,10 @@ public class ClearDataTask extends AsyncTask<Void, Integer, Void>{
     @Override
     protected Void doInBackground(Void... params) {
 
-        for(int i=0; i<mFiles.length; i++){
+        for(int i=0; i <mStocks.length; i++){
+            mStockDataSource.deleteStock(mStocks[i].getSymbol());
+            Log.i(TAG, "Deleting" + mStocks[i].getSymbol());
             onProgressUpdate(i);
-            mFiles[i].delete();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -68,7 +68,7 @@ public class ClearDataTask extends AsyncTask<Void, Integer, Void>{
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-
+        mStockDataSource.close();
         mProgressDialog.dismiss();
     }
 }

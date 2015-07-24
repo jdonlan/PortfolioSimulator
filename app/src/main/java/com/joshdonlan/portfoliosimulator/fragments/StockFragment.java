@@ -54,13 +54,13 @@ public class StockFragment extends Fragment implements StockUpdateListener{
     @Override
     public void updateStockDetails(Stock _stock) {
         ((TextView) mLayout.findViewById(R.id.tv_symbol)).setText(_stock.getSymbol());
-        ((TextView) mLayout.findViewById(R.id.tv_price)).setText(_stock.getPrice());
+        ((TextView) mLayout.findViewById(R.id.tv_price)).setText(_stock.getPriceString());
         ((TextView) mLayout.findViewById(R.id.tv_date)).setText(_stock.getDate());
-        ((TextView) mLayout.findViewById(R.id.tv_high)).setText(_stock.getHigh());
-        ((TextView) mLayout.findViewById(R.id.tv_low)).setText(_stock.getLow());
-        ((TextView) mLayout.findViewById(R.id.tv_change)).setText(_stock.getChange());
-        ((TextView) mLayout.findViewById(R.id.tv_open)).setText(_stock.getOpen());
+        ((TextView) mLayout.findViewById(R.id.tv_high)).setText(_stock.getHighString());
+        ((TextView) mLayout.findViewById(R.id.tv_low)).setText(_stock.getLowString());
+        ((TextView) mLayout.findViewById(R.id.tv_change)).setText(_stock.getChangeString());
+        ((TextView) mLayout.findViewById(R.id.tv_open)).setText(_stock.getOpenString());
         ((TextView) mLayout.findViewById(R.id.tv_volume)).setText(_stock.getVolume().toString());
-        ((TextView) mLayout.findViewById(R.id.tv_percent)).setText("("+_stock.getPercent()+")");
+        ((TextView) mLayout.findViewById(R.id.tv_percent)).setText("("+_stock.getPercentString()+")");
     }
 }

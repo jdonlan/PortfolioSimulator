@@ -12,8 +12,10 @@ import android.widget.ListView;
 
 import com.joshdonlan.portfoliosimulator.R;
 import com.joshdonlan.portfoliosimulator.StockDetailActivity;
+import com.joshdonlan.portfoliosimulator.objetcs.DatabaseHelper;
 import com.joshdonlan.portfoliosimulator.objetcs.Stock;
 import com.joshdonlan.portfoliosimulator.objetcs.StockAdapter;
+import com.joshdonlan.portfoliosimulator.objetcs.StockDataSource;
 import com.joshdonlan.portfoliosimulator.objetcs.StockDetailListener;
 import com.joshdonlan.utils.AndroidIO;
 
@@ -55,11 +57,15 @@ public class PortfolioFragment extends Fragment {
         String[] symbols = getResources().getStringArray(portfolioID);
         Stock[] stocks = new Stock[symbols.length];
         int stocksRead = 0;
+        StockDataSource stockDataSource = new StockDataSource(mContainingActivity);
+        stockDataSource.open();
         for(String symbol : symbols){
-            Stock stock = (Stock) AndroidIO.readInternal(mContainingActivity,symbol+".dat");
+//            Stock stock = (Stock) AndroidIO.readInternal(mContainingActivity,symbol+".dat");
+            Stock stock = stockDataSource.readStock(symbol);
             stocks[stocksRead] = stock;
             stocksRead++;
         }
+        stockDataSource.close();
 
         StockAdapter stockAdapter = new StockAdapter(mContainingActivity,stocks);
         stocklist.setAdapter(stockAdapter);

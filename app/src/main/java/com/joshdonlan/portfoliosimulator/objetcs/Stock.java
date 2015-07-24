@@ -23,8 +23,6 @@ public class Stock implements Serializable{
     private Integer mVolume;
     private String mPercent;
 
-    public Stock(){}
-
     public Stock(String symbol, Double price, String date, Double high, Double low, Double change, Double open, Integer volume, String percent){
         mSymbol = symbol;
         mPrice = price;
@@ -37,91 +35,23 @@ public class Stock implements Serializable{
         mPercent = percent;
     }
 
-    public Stock(JSONObject stockData){
-        try {
-            mSymbol = stockData.getString("symbol");
-            mPrice = stockData.getDouble("price");
-            mDate = stockData.getString("date") + " " + stockData.getString("time");
-            mHigh = stockData.getDouble("high");
-            mLow = stockData.getDouble("low");
-            mChange = stockData.getDouble("change");
-            mOpen = stockData.getDouble("open");
-            mVolume = stockData.getInt("volume");
-            mPercent = stockData.getString("chgpct");
-        } catch (Exception e) {
-            Log.e(TAG, "Error updating display");
-        }
-    }
+    public String getPriceString() { return mPrice == null ? "0" : roundStringOrDouble(mPrice); }
+    public String getHighString() { return mHigh == null ? "0" : roundStringOrDouble(mHigh); }
+    public String getLowString() { return mLow == null ? "0" : roundStringOrDouble(mLow); }
+    public String getChangeString() { return mChange == null ? "0" : roundStringOrDouble(mChange); }
+    public String getOpenString() { return mOpen == null ? "0" : roundStringOrDouble(mOpen); }
+    public String getPercentString() { return mPercent == null ? "0%" : roundStringOrDouble(mPercent)+"%"; }
 
-    public String getSymbol() {
-        return mSymbol == null ? "N/A" : mSymbol;
-    }
+    public String getSymbol() { return mSymbol == null ? "N/A" : mSymbol; }
+    public String getDate() { return mDate == null ? "N/A" : mDate; }
+    public Integer getVolume() { return mVolume == null ? 0 : mVolume; }
+    public Double getPrice(){ return mPrice == null ? 0 : mPrice; }
+    public Double getHigh(){ return mHigh == null ? 0 : mHigh; }
+    public Double getLow(){ return mLow == null ? 0 : mLow; }
+    public Double getChange(){ return mChange == null ? 0 : mChange; }
+    public Double getOpen(){ return mOpen == null ? 0 : mOpen; }
+    public String getPercent(){ return mPercent == null ? "0%" : mPercent; }
 
-    public void setSymbol(String mSymbol) {
-        this.mSymbol = mSymbol;
-    }
-
-    public String getPrice() {
-        return mPrice == null ? "0" : roundStringOrDouble(mPrice);
-    }
-
-    public void setPrice(Double mPrice) {
-        this.mPrice = mPrice;
-    }
-
-    public String getDate() {
-        return mDate == null ? "N/A" : mDate;
-    }
-
-    public void setDate(String mDate) {
-        this.mDate = mDate;
-    }
-
-    public String getHigh() {
-        return mHigh == null ? "0" : roundStringOrDouble(mHigh);
-    }
-
-    public void setHigh(Double mHigh) {
-        this.mHigh = mHigh;
-    }
-
-    public String getLow() {
-        return mLow == null ? "0" : roundStringOrDouble(mLow);
-    }
-
-    public void setLow(Double mLow) {
-        this.mLow = mLow;
-    }
-
-    public String getChange() {
-        return mChange == null ? "0" : roundStringOrDouble(mChange);
-    }
-
-    public void setChange(Double mChange) {
-        this.mChange = mChange;
-    }
-
-    public String getOpen() {
-        return mOpen == null ? "0" : roundStringOrDouble(mOpen);
-    }
-
-    public void setOpen(Double mOpen) {
-        this.mOpen = mOpen;
-    }
-
-    public Integer getVolume() {
-        return mVolume == null ? 0 : mVolume;
-    }
-
-    public void setVolume(Integer mVolume) {
-        this.mVolume = mVolume;
-    }
-
-    public String getPercent() { return mPercent == null ? "0%" : roundStringOrDouble(mPercent)+"%"; }
-
-    public void setPercent(String mPercent) {
-        this.mPercent = mPercent;
-    }
 
     private <T> String roundStringOrDouble(T _input){
         Double input;

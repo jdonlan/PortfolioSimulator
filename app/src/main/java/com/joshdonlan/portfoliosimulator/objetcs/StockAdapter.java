@@ -51,8 +51,8 @@ public class StockAdapter extends BaseAdapter {
         }
 
         holder.getSymbol().setText(getItem(_position).getSymbol());
-        holder.getPrice().setText(getItem(_position).getPrice().toString());
-        holder.getChange().setText(getItem(_position).getPercent());
+        holder.getPrice().setText(getItem(_position).getPriceString().toString());
+        holder.getChange().setText(getItem(_position).getPercentString());
 
         return _convertView;
     }
